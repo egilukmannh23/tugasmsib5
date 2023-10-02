@@ -19,4 +19,8 @@ class lingkaran extends bentuk2D{
     public function keliling(){
         return 2 * 3.14 *$this->jari2;
     }
+
+    public function __toString(){
+        return $this->jari2;
+    }
 }

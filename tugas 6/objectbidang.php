@@ -41,6 +41,7 @@ echo "<thead>";
 echo "<tr>";
 echo "<th>No</th>";
 echo "<th>Nama Bidang</th>";
+echo "<th>Keterangan</th>";
 echo "<th>Luas Bidang</th>";
 echo "<th>Keliling Bidang</th>";
 echo "</tr>";
@@ -50,6 +51,7 @@ foreach ($kumpulanBidang as $bdg => $bidang) {
     echo "<tr>";
     echo "<td>" . ($bdg + 1) . "</td>";
     echo "<td>" . $bidang->namaBidang() . "</td>";
+    echo "<td>" . $bidang->__toString() . "</td>";
     echo "<td>" . $bidang->luasBidang() . "</td>";
     echo "<td>" . $bidang->keliling() . "</td>";
     echo "</tr>";

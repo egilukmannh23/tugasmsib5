@@ -21,5 +21,10 @@ class persegiPanjang extends bentuk2D {
     public function keliling(){
         return 2 * ($this-> panjang * $this-> lebar);
     }
+
+    public function __toString(){
+        return "" .$this->panjang. "," .$this->lebar."";
+
+    }
 }
 ?>

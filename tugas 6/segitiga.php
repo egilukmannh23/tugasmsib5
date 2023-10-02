@@ -21,5 +21,10 @@ class segitiga extends bentuk2D{
     public function keliling(){
         return 'Luas segitiga tidak bisa di hitung';
     }
+
+    public function __toString(){
+        return "" .$this->alas. "," .$this->tinggi."";
+
+    }
 }
     ?>
