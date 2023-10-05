@@ -1,0 +1,24 @@
+//masuk folder mysql CMD windows
+cd \xampp\mysql\bin
+
+//Masuk ke ruang DB melalui CMD
+mysql -u root -php
+
+//menampilkan database yang sudah di buat
+SHOW DATABASES;
+
+//buat database baru
+CREATE DATABASE dbpegawai;
+
+//masuk ke ruang database
+USE dbpegawai;
+
+//menampilkan tabel di dbpegawai
+SHOW TABLES;
+
+//membuat tabel pegawai pada dbpegawai
+ CREATE TABLE pegawai (id INT PRIMARY KEY, nip CHAR(5) NOT NULL UNIQUE, nama VARCHAR(30) NOT NULL, gender ENUM('l','p') NOT NULL, um
+ur INT NOT NULL, berat_badan FLOAT );
+
+//menampilkan deskripsi tabel pegawai (yang sudah di buat)
+DESCRIBE pegawai;
