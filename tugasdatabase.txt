@@ -17,7 +17,7 @@ USE dbpegawai;
 SHOW TABLES;
 
 //membuat tabel pegawai pada dbpegawai
- CREATE TABLE pegawai (id INT PRIMARY KEY, nip CHAR(5) NOT NULL UNIQUE, nama VARCHAR(30) NOT NULL, gender ENUM('l','p') NOT NULL, um
+ CREATE TABLE pegawai (id INT PRIMARY KEY, nip CHAR(5) NOT NULL UNIQUE, nama VARCHAR(25) NOT NULL, gender ENUM('l','p') NOT NULL, um
 ur INT NOT NULL, berat_badan FLOAT );
 
 //menampilkan deskripsi tabel pegawai (yang sudah di buat)
