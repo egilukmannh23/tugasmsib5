@@ -1,0 +1,57 @@
+//membuat db_penjualan
+CREATE DATABASE dbpebjualan;
+
+//membuat tabel produk
+CREATE TABLE produk (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_barang VARCHAR(30) NOT NULL,
+    jumlah_barang INT NOT NULL);
+
+//mengisi tabel produk
+INSERT INTO produk (nama_barang, jumlah_barang) VALUES
+    ('TV' , 10),
+    ('Mesin Cuci' , 5),
+    ('Kompor' , 15),
+    ('Galon' , 8),
+    ('Kulkas' , 2);
+
+//membuat tabel pembelian
+CREATE TABLE pembelian (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tanggal DATE NOT NULL,
+    nomor VARCHAR (25) NOT NULL,
+    produk_id INT NOT NULL,
+    jumlah INT NOT NULL,
+    harga INT NOT NULL,
+    vendor_id INT NOT NULL,
+    FOREIGN KEY (produk_id) REFERENCES produk(id));
+
+//mengisi tabel pembelian
+INSERT INTO pembelian (tanggal,nomor,produk_id,jumlah,harga,vendor_id) VALUES
+    ('2023-9-06' , 001 , 1 , 2 , 500000, 3),
+    ('2023-8-06' , 002 , 3 , 1 , 200000, 1),
+    ('2023-8-06' , 003 , 4 , 2 , 250000, 2),
+    ('2023-8-06' , 004 , 5 , 2 , 30000, 4),
+    ('2023-8-06' , 005 , 2 , 1 , 70000, 5);
+
+//membuat tabel vendor
+CREATE TABLE vendor (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nomor VARCHAR (20) NOT NULL,
+    nama VARCHAR (30) NOT NULL,
+    kota VARCHAR (15),
+    kontak VARCHAR (30));
+
+//mengisi tabel vendor
+INSERT INTO vendor (nomor, nama, kota, kontak)
+VALUES
+    ('A001', 'Saken', 'Jakarta', '0865786345'),
+    ('A002', 'phanter', 'Surabaya', '087986754234'),
+    ('A003', 'magix', 'Bandung', '876234125876'),
+    ('A004', 'cosmos', 'Yogyakarta', '089745324657'),
+    ('A005', 'joyko', 'Semarang', '634123876987');
+
+//menambahkan references (foreign key) tabel pembelian ke tabel vendor
+ALTER TABLE pembelian
+ADD CONSTRAINT FK_vendor FOREIGN KEY (vendor_id)
+REFERENCES vendor(id);
