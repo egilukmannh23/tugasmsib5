@@ -1,0 +1,93 @@
+//3.3
+//1.Berapakah jumlah pelanggan yang lahirnya tahun 1998
+select count(*) as tanggal_lahir_pelanggan from pelanggan where year(tgl_lahir) = 1998;
+
+//2.Berapakah jumlah pelanggan perempuan yang tempat lahirnya di Jakarta
+select count(*) pelanggan_perempuan_jakarta from pelanggan
+    where jk = 'P' and tmp_lahir = 'Jakarta';
+
+//3.Berapa jumlah stok semua produk yang harga jual di bawah 10 ribu
+select sum(harga_jual) as barang_10ribu from produk
+    where harga_jual < 10000;
+
+//4.Produk yang mempunyai kode awal Keterangan Keterangan K 
+elect count(*) produk_K from produk
+    where nama like 'K%';
+
+//5. Berapa harga jual rata rata produk yang di atas 1jt
+select avg(harga_jual) as harga_jual_produk_1jt from produk
+where harga_jual > 1000000;
+
+//6.Tampilkan jumlah produk yang paling besar
+ select max(stok) as produk_terbanyak from produk;
+
+//7. ada berapa produk yang stoknya kurang dari minimal stok
+select count(*) kurang_dari_min_stok
+    from produk
+    where stok < min_stok;
+
+//8.Berapa total asses kseluruhan produk
+select sum(stok*harga_jual) as total from produk;
+
+
+//3.3
+//1.Tampilkan data produk : id, nama, stok dan informasi jika stok telah sampai batas minimal atau kurang dari minimum stok dengan informasi ‘segera belanja’ jika tidak ‘stok aman’.
+ select id,nama,stok,
+    case
+    when stok < min_stok then 'Segera belanja'
+    else 'stok aman'
+    end as informasi_stok from produk;
+
+//2.	Tampilkan data pelanggan: id, nama, umur dan kategori umur : jika umur < 17 → ‘muda’ , 17-55 → ‘Dewasa’, selainnya ‘Tua’
+select id,nama,umur,
+    case
+    when umur < 17 then 'Muda'
+    when umur >= 17 and umur<=55 then 'Dewasa'
+    else 'Tua'
+    end as kategori_umur_pelanggan
+    from pelanggan;
+
+//3.Tampilkan data produk: id, kode, nama, dan bonus untuk kode ‘TV01’ →’DVD Player’ , ‘K001’ → ‘Rice Cooker’ selain dari diatas ‘Tidak Ada’
+ select id,kode,nama,
+    case
+    when kode = 'TV01' then 'DVD Player'
+    when kode = 'TV02' then 'Rice Cooker'
+    else 'Tidak ada'
+    end as Bonus
+    from produk;
+
+
+//3.4
+//1. Tampilkan data statistik jumlah tmpat lahir pelanggan
+select tmp_lahir, count(*) as jumlah_tempat_lahir
+    from pelanggan
+    group by tmp_lahir;
+
+//2.Tampilkan jumlah statistik produk berdasarkan jenis produk
+select kategori, count(*) as jumlah_jenis_produk
+    from produk
+    group by kategori;
+
+//3.Tampilkan data pelanggan yang usianya dibawah rata usia pelanggan
+select id,nama,umur
+    from pelanggan
+    where umur < (select avg(umur) from pelanggan);
+
+//4.Tampilkan data produk yang harganya diatas rata-rata harga produk
+ select id, nama, harga_jual
+    from produk
+    where harga_jual > (select avg(harga_jual) from produk);
+
+//5.Tampilkan data pelanggan yang memiliki kartu dimana iuran tahunan kartu diatas 90rb
+select * from kartu where iuran >90000;
+
+//6.Tampilkan statistik data produk dimana harga produknya dibawah rata-rata harga produk secara keseluruhan
+select avg(harga_jual) as rata_rata_harga,
+    count(*) as jumlah_produk,
+    min(harga_jual) as harga_terendah,
+    max(harga_jual) as harga_tertinggi
+    from produk
+    where harga_jual < (select avg(harga_jual) from produk);
+
+//7.Tampilkan data pelanggan yang memiliki kartu dimana diskon kartu yang diberikan diatas 3%
+select nama,diskon from kartu where diskon >3;
